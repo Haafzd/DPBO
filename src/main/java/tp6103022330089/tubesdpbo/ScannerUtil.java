@@ -1,56 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package tp6103022330089.tubesdpbo;
 
 import java.util.Scanner;
 
-/**
- *
- * @author LEGION
- */
 public class ScannerUtil {
-
-    // Membaca input string dari pengguna
     public static String scanString(Scanner scan) {
-        return scan.nextLine();
+        return scan.nextLine().trim();
     }
 
-    // Membaca input integer dari pengguna dengan pengecekan
     public static int scanInt(Scanner scan) {
-        int input = -1;
-        boolean valid = false;
-        while (!valid) {
+        while (true) {
             try {
-                input = Integer.parseInt(scan.nextLine());
-                valid = true;
+                return Integer.parseInt(scan.nextLine().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Input tidak valid, silakan masukkan angka.");
+                System.out.print("Input tidak valid, silakan masukkan angka: ");
             }
         }
-        return input;
     }
 
-    // Membaca input karakter ('Y' / 'N') dari pengguna
     public static char scanChar(Scanner scan) {
-        char input = ' ';
-        boolean valid = false;
-        while (!valid) {
-            String userInput = scan.nextLine().toUpperCase();
+        while (true) {
+            String userInput = scan.nextLine().trim().toUpperCase();
             if (userInput.equals("Y") || userInput.equals("N")) {
-                input = userInput.charAt(0);
-                valid = true;
-            } else {
-                System.out.println("Input tidak valid, masukkan 'Y' atau 'N'.");
+                return userInput.charAt(0);
             }
+            System.out.print("Input tidak valid, masukkan 'Y' atau 'N': ");
         }
-        return input;
     }
+
     public static boolean isValidEmail(String email) {
-        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-        return email.matches(regex);
+        if (email == null) {
+            return false;
+        }
+        String regex = "^[\\w.-]+@([\\w-]+\\.)+[\\w-]{2,}$";
+        return email.trim().matches(regex);
     }
-
 }
-
