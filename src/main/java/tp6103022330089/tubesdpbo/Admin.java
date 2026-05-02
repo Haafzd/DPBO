@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin extends User implements News {
-    private static ArrayList<Berita> daftarBerita = new ArrayList<>();
+    private final static ArrayList<Berita> daftarBerita = new ArrayList<>();
 
     public Admin(String nama, String email, String password, String alamat, String role, String noTelepon) {
         super(nama, email, password, alamat, role, noTelepon);
@@ -69,15 +69,15 @@ public class Admin extends User implements News {
     }
 
     public void tambahPelatihan() {
-        Scanner scan = User.scan;
+        Scanner scanner = User.scan;
         System.out.print("Masukkan ID Pelatihan: ");
-        String idPelatihan = ScannerUtil.scanString(scan);
+        String idPelatihan = ScannerUtil.scanString(scanner);
         System.out.print("Masukkan Judul Pelatihan: ");
-        String judulPelatihan = ScannerUtil.scanString(scan);
+        String judulPelatihan = ScannerUtil.scanString(scanner);
         System.out.print("Masukkan Pemateri: ");
-        String pemateri = ScannerUtil.scanString(scan);
+        String pemateri = ScannerUtil.scanString(scanner);
         System.out.print("Masukkan Deskripsi Pelatihan: ");
-        String deskripsiPelatihan = ScannerUtil.scanString(scan);
+        String deskripsiPelatihan = ScannerUtil.scanString(scanner);
 
         Pelatihan pelatihanBaru = new Pelatihan(idPelatihan, judulPelatihan, pemateri, deskripsiPelatihan);
         if (Pelatihan.tambahPelatihan(pelatihanBaru)) {

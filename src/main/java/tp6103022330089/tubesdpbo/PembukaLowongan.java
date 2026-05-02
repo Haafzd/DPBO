@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class PembukaLowongan extends User {
-    private ArrayList<Lowongan> lowonganYangDibuat;
+    private final ArrayList<Lowongan> lowonganYangDibuat;
 
     public PembukaLowongan(String nama, String email, String password, String alamat, String role, String noTelepon) {
         super(nama, email, password, alamat, role, noTelepon);
@@ -27,18 +27,18 @@ public class PembukaLowongan extends User {
     }
 
     public void membuatLowongan() {
-        Scanner scan = User.scan;
+        Scanner scanner = User.scan;
         System.out.print("Masukkan ID Lowongan: ");
-        String idLowongan = ScannerUtil.scanString(scan);
+        String idLowongan = ScannerUtil.scanString(scanner);
         if (Lowongan.cariById(idLowongan) != null) {
             System.out.println("Lowongan dengan ID " + idLowongan + " sudah ada.");
             return;
         }
 
         System.out.print("Masukkan Posisi Lowongan: ");
-        String posisi = ScannerUtil.scanString(scan);
+        String posisi = ScannerUtil.scanString(scanner);
         System.out.print("Masukkan Deskripsi Lowongan: ");
-        String deskripsi = ScannerUtil.scanString(scan);
+        String deskripsi = ScannerUtil.scanString(scanner);
 
         Lowongan lowongan = new Lowongan(idLowongan, posisi, this.getNama(), deskripsi);
         lowonganYangDibuat.add(lowongan);

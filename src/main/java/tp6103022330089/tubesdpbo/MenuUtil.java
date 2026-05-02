@@ -16,19 +16,13 @@ public class MenuUtil {
             int pilihanMenu = ScannerUtil.scanInt(scan);
 
             switch (pilihanMenu) {
-                case 1:
-                    prosesLogin(scan);
-                    break;
-                case 2:
-                    prosesRegister(scan);
-                    break;
-                case 3:
+                case 1 -> prosesLogin(scan);
+                case 2 -> prosesRegister(scan);
+                case 3 -> {
                     System.out.println("Terima kasih! Keluar dari program.");
                     isRunning = false;
-                    break;
-                default:
-                    System.out.println("Pilihan tidak valid.");
-                    break;
+                }
+                default -> System.out.println("Pilihan tidak valid.");
             }
         }
     }
@@ -46,12 +40,12 @@ public class MenuUtil {
         }
 
         System.out.println("Login berhasil, selamat datang " + currentUser.getNama() + ".");
-        if (currentUser instanceof Admin) {
-            menuAdmin(scan, (Admin) currentUser);
-        } else if (currentUser instanceof Pelamar) {
-            menuPelamar(scan, (Pelamar) currentUser);
-        } else if (currentUser instanceof PembukaLowongan) {
-            menuPenyedia(scan, (PembukaLowongan) currentUser);
+        switch (currentUser) {
+            case Admin admin -> menuAdmin(scan, admin);
+            case Pelamar pelamar -> menuPelamar(scan, pelamar);
+            case PembukaLowongan pembukaLowongan -> menuPenyedia(scan, pembukaLowongan);
+            default -> {
+            }
         }
     }
 
@@ -103,42 +97,28 @@ public class MenuUtil {
             int pilihan = ScannerUtil.scanInt(scan);
 
             switch (pilihan) {
-                case 1:
-                    admin.addNews();
-                    break;
-                case 2:
+                case 1 -> admin.addNews();
+                case 2 -> {
                     System.out.print("Masukkan ID Berita yang ingin dihapus: ");
                     admin.deleteNews(ScannerUtil.scanString(scan));
-                    break;
-                case 3:
-                    admin.displayNews();
-                    break;
-                case 4:
-                    admin.tambahPelatihan();
-                    break;
-                case 5:
+                }
+                case 3 -> admin.displayNews();
+                case 4 -> admin.tambahPelatihan();
+                case 5 -> {
                     System.out.print("Masukkan ID/Judul Pelatihan yang ingin dihapus: ");
                     admin.hapusPelatihan(ScannerUtil.scanString(scan));
-                    break;
-                case 6:
-                    Pelatihan.displayPelatihan();
-                    break;
-                case 7:
+                }
+                case 6 -> Pelatihan.displayPelatihan();
+                case 7 -> {
                     System.out.print("Masukkan nama user yang ingin dihapus: ");
                     String namaUserHapus = ScannerUtil.scanString(scan);
                     System.out.print("Masukkan email user yang ingin dihapus: ");
                     String emailUserHapus = ScannerUtil.scanString(scan);
                     User.hapusUser(namaUserHapus, emailUserHapus);
-                    break;
-                case 8:
-                    User.showAllUsers();
-                    break;
-                case 9:
-                    lanjut = false;
-                    break;
-                default:
-                    System.out.println("Pilihan tidak valid.");
-                    break;
+                }
+                case 8 -> User.showAllUsers();
+                case 9 -> lanjut = false;
+                default -> System.out.println("Pilihan tidak valid.");
             }
         }
     }
@@ -156,28 +136,20 @@ public class MenuUtil {
             int pilihan = ScannerUtil.scanInt(scan);
 
             switch (pilihan) {
-                case 1:
-                    Lowongan.showLowongan();
-                    break;
-                case 2:
+                case 1 -> Lowongan.showLowongan();
+                case 2 -> {
                     Lowongan.showLowongan();
                     System.out.print("Masukkan ID Lowongan: ");
                     pelamar.melamarLowongan(ScannerUtil.scanString(scan));
-                    break;
-                case 3:
-                    Pelatihan.displayPelatihan();
-                    break;
-                case 4:
+                }
+                case 3 -> Pelatihan.displayPelatihan();
+                case 4 -> {
                     Pelatihan.displayPelatihan();
                     System.out.print("Masukkan ID/Judul Pelatihan: ");
                     pelamar.mendaftarPelatihan(ScannerUtil.scanString(scan));
-                    break;
-                case 5:
-                    lanjut = false;
-                    break;
-                default:
-                    System.out.println("Pilihan tidak valid.");
-                    break;
+                }
+                case 5 -> lanjut = false;
+                default -> System.out.println("Pilihan tidak valid.");
             }
         }
     }
@@ -195,29 +167,19 @@ public class MenuUtil {
             int pilihan = ScannerUtil.scanInt(scan);
 
             switch (pilihan) {
-                case 1:
-                    penyedia.membuatLowongan();
-                    break;
-                case 2:
+                case 1 -> penyedia.membuatLowongan();
+                case 2 -> {
                     penyedia.showLowongan();
                     System.out.print("Masukkan ID Lowongan: ");
                     String idLowongan = ScannerUtil.scanString(scan);
                     System.out.print("Masukkan nama/email pelamar yang akan ditolak: ");
                     String identitasPelamar = ScannerUtil.scanString(scan);
                     penyedia.menolakPelamar(idLowongan, identitasPelamar);
-                    break;
-                case 3:
-                    penyedia.melihatDaftarPelamar();
-                    break;
-                case 4:
-                    penyedia.showLowongan();
-                    break;
-                case 5:
-                    lanjut = false;
-                    break;
-                default:
-                    System.out.println("Pilihan tidak valid.");
-                    break;
+                }
+                case 3 -> penyedia.melihatDaftarPelamar();
+                case 4 -> penyedia.showLowongan();
+                case 5 -> lanjut = false;
+                default -> System.out.println("Pilihan tidak valid.");
             }
         }
     }

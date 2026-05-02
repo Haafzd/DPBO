@@ -10,9 +10,9 @@ package tp6103022330089.tubesdpbo;
  */
 public class Berita {
 
-    private String id;
-    private String judul;
-    private String konten;
+    private final String id;
+    private final String judul;
+    private final String konten;
 
     public Berita(String id, String judul, String konten) {
         this.id = id;
